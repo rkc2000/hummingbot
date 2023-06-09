@@ -70,21 +70,6 @@ class MarketConfigMap(BaseClientModel):
         ),
     )
 
-    @validator("offsets", pre=True)
-    def validate_offsets(cls, offsets: Union[str, List[Decimal]], values: Dict):
-        """checks and ensure offsets are of decimal type"""
-        if offsets is None:
-            return None
-        if isinstance(offsets, str):
-            offsets = offsets.split(",")
-        for offset in offsets:
-            if validate_decimal(offset):
-                return validate_decimal(offset)
-        markets = values["markets"]
-        if len(offsets) >= len(markets):
-            return offsets[: len(markets)]
-        return offsets + ["0"] * (len(markets) - len(offsets))
-
     @validator("markets", pre=True)
     def validate_markets(cls, markets: Union[str, List[str]], values: Dict):
         """checks and ensure offsets are of decimal type"""
