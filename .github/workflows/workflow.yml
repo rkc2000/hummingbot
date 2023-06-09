@@ -145,5 +145,5 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: hummingbot/hummingbot:latest
+          tags: rkc2000/hummingbot:latest
 
